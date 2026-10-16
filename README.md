@@ -10,6 +10,23 @@ Using Microsoft SQL Server, I analyzed adoption trends, euthanasia counts, and r
 
 The goal of this project is to identify patterns in shelter outcomes, compare trends across animal categories, and demonstrate practical SQL skills through real-world data analysis.
 
+
+## Tableau Dashboard
+
+This dashboard visualizes animal adoption trends, adoption-to-intake percentages, and reported live release rates across four fiscal years.
+
+![San Diego Animal Shelter Dashboard](animal_shelter_dashboard.png)
+
+### Explore the Dashboard
+
+[Download the Tableau Packaged Workbook](San_Diego_Animal_Shelter_Analysis.twbx)
+
+The workbook contains three visualizations:
+- **Annual Adoption Trends:** Total adoptions by fiscal year.
+- **Adoption Rate by Animal Type:** Adoption-to-intake percentages for dogs, cats, rabbits, and other animals.
+- **Live Release Rate Trends:** Reported live release rates by animal type and fiscal year.
+  
+
 ## Tools & Technologies
 
 - **Microsoft SQL Server / SSMS:** Data storage, querying, and analysis
