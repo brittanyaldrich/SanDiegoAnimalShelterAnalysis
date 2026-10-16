@@ -30,9 +30,15 @@ Reporting scope and definitions may vary
 between fiscal years.
 */
 
-/* Adoption Analysis */
+USE SanDiegoAnimalShelter;
+GO
 
---Which animal type had the most adoptions?
+/* ============================================
+   SECTION 1: ADOPTION ANALYSIS
+   Research Questions 1-4
+   ============================================ */
+
+--Q1: Which animal type had the most adoptions?
 
 SELECT
 	AnimalType,
@@ -41,7 +47,7 @@ FROM AnimalShelterData
 GROUP BY AnimalType
 ORDER BY TotalAdoptions DESC;
 
---Which fiscal year had the most adoptions?
+--Q2: Which fiscal year had the most adoptions?
 
 SELECT
 	FiscalYear,
@@ -50,7 +56,7 @@ FROM AnimalShelterData
 GROUP BY FiscalYear
 ORDER BY FiscalYear ASC;
 
---How do cat and dog adoptions compare by year?
+--Q3: How do cat and dog adoptions compare by year?
 
 SELECT
 	FiscalYear,
@@ -61,7 +67,7 @@ WHERE AnimalType IN ('Cat', 'Dog')
 GROUP BY FiscalYear, AnimalType
 ORDER BY FiscalYear ASC, AnimalType ASC;
 
---What is the adoption-to-intake percentage for each animal type?
+--Q4: What is the adoption-to-intake percentage for each animal type?
 
 SELECT
 	AnimalType,
@@ -77,9 +83,12 @@ FROM AnimalShelterData
 GROUP BY AnimalType
 ORDER BY AdoptionPercentage DESC;
 
-/* Euthanasia Analysis */
+/* ============================================
+   SECTION 2: EUTHANASIA ANALYSIS
+   Research Questions 5-7
+   ============================================ */
 
---How have euthenasia counts changed over time?
+--Q5: How have euthanasia counts changed over time?
 
 SELECT
 	FiscalYear,
@@ -88,7 +97,7 @@ FROM AnimalShelterData
 GROUP BY FiscalYear
 ORDER BY FiscalYear ASC;
 
---Which animal type had the highest euthenasia counts?
+--Q6: Which animal type had the highest euthanasia counts?
 
 SELECT
 	AnimalType,
@@ -97,7 +106,7 @@ FROM AnimalShelterData
 GROUP BY AnimalType
 ORDER BY TotalEuthanized DESC;
 
---What is the euthanasia-to-intake percentage for each animal type?
+--Q7: What is the euthanasia-to-intake percentage for each animal type?
 
 SELECT
 	AnimalType,
@@ -113,9 +122,12 @@ FROM AnimalShelterData
 GROUP BY AnimalType
 ORDER BY EuthanasiaPercentage DESC;
 
-/* Live Release Analysis */
+/* ============================================
+   SECTION 3: LIVE RELEASE ANALYSIS
+   Research Questions 8-10
+   ============================================ */
 
---How have live release rates changed by year and animal type?
+--Q8: How have live release rates changed by year and animal type?
 
 SELECT 
 	FiscalYear,
@@ -128,7 +140,7 @@ SELECT
 FROM AnimalShelterData
 ORDER BY FiscalYear ASC, AnimalType ASC;
 
---How did live release rates change by animal type?
+--Q9: How did live release rates change by animal type?
 
 SELECT
 	AnimalType,
@@ -144,7 +156,7 @@ FROM AnimalShelterData
 GROUP BY AnimalType
 ORDER BY AnimalType;
 
---Which animal types had the largest changes in live release rates?
+--Q10: Which animal types had the largest changes in live release rates?
 
 SELECT 
 	AnimalType,
@@ -172,9 +184,12 @@ FROM AnimalShelterData
 GROUP BY AnimalType
 ORDER BY PercentagePointChange DESC;
 
-/* Advanced Trend Analysis */
+/* ============================================
+   SECTION 4: ADVANCED TREND ANALYSIS
+   Research Questions 11-13
+   ============================================ */
 
---Which fiscal year had the highest adoption-to-intake percentage?
+--Q11: Which fiscal year had the highest adoption-to-intake percentage?
 
 ;WITH YearlyAdoptions AS (
 	SELECT
@@ -196,7 +211,7 @@ SELECT
 FROM YearlyAdoptions
 ORDER BY AdoptionPercentage DESC;
 
---How did adoption totals change over year?
+--Q12: How did adoption totals change over year?
 
 ;WITH YearlyAdoptions AS (
 	SELECT
@@ -220,7 +235,7 @@ SELECT
 FROM YearlyAdoptions
 ORDER BY FiscalYear;
 
---What was the year-over-year percentage change in total adoptions?
+--Q13: What was the year-over-year percentage change in total adoptions?
 
 ;WITH YearlyAdoptions AS (
 	SELECT
