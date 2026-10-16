@@ -151,3 +151,65 @@ Applied SQL techniques including aggregation, filtering, conditional expressions
 - Reported live release rates were retained from the source reports rather than independently recalculated.
 - Changes in reporting scope, organizational coverage, or definitions may affect comparisons between fiscal years.
 - Findings describe the included reports and should not be generalized to all San Diego County shelters without additional verification.
+
+## How to Run This Project
+
+### Requirements
+
+- Microsoft SQL Server
+- SQL Server Management Studio (SSMS)
+- The CSV dataset and SQL scripts included in this repository
+
+### Setup Instructions
+
+**1. Download the repository**
+
+Download or clone this repository to your computer.
+
+**2. Create the database**
+
+Open `00_database_setup.sql` in SSMS and execute the database creation section.
+
+This creates the `SanDiegoAnimalShelter` database if it does not already exist.
+
+**3. Import the dataset**
+
+In SSMS:
+
+1. Right-click the `SanDiegoAnimalShelter` database in Object Explorer.
+2. Select **Tasks → Import Flat File**.
+3. Select `san_diego_animal_shelter.csv`.
+4. Confirm that the first row is recognized as column headers.
+5. Set the destination table name to `AnimalShelterData`.
+6. Verify that numeric columns use `INT` and text columns use `VARCHAR`.
+7. Complete the import.
+
+**Important:** The Import Flat File Wizard creates the destination table. For a fresh installation, skip the `CREATE TABLE` section of `00_database_setup.sql` and allow the wizard to create and populate the table instead.
+
+**4. Verify the import**
+
+Run the following SQL query:
+
+```sql
+USE SanDiegoAnimalShelter;
+
+SELECT COUNT(*) AS TotalRecords
+FROM dbo.AnimalShelterData;
+```
+
+The expected result is **16 records**.
+
+**5. Run the analysis**
+
+Open `01_adoption_analysis.sql` in SSMS.
+
+Select the `SanDiegoAnimalShelter` database and execute the individual SQL queries to explore the research questions and reproduce the findings.
+
+## Project Files
+
+| File | Description |
+|---|---|
+| `00_database_setup.sql` | Database creation, table schema, and import instructions |
+| `01_adoption_analysis.sql` | SQL queries covering 13 research questions |
+| `san_diego_animal_shelter.csv` | Cleaned dataset compiled from annual shelter reports |
+| `README.md` | Project overview, methodology, findings, and setup instructions |
